@@ -2,7 +2,7 @@
 include './includes/visits.php';
 include './includes/airports.php';
 include './includes/form.php';
-
+include './includes/pdf.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,7 +14,6 @@ include './includes/form.php';
     <title>Flights reservations</title>
 </head>
 <body>
-
 
 </form>
 </body>

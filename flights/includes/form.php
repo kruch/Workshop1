@@ -1,5 +1,5 @@
 
-<form name="" action="" method="post">
+<form name="ticket" action="./pdf.php" method="post">
     <label>Lotnisko wylotu</label><br>
     <select name="departure">
 
@@ -12,13 +12,11 @@
     </select><br>
     <label>Lotnisko przylotu</label><br>
     <select name="arrival">
-
-<?php
-for ($i = 0; $i < count($airports); $i++) {
-    echo '<option value="' . $i . '">' . $airports[$i]['name'] . '</options>';
-}
-?>
-
+        <?php
+        for ($i = 0; $i < count($airports); $i++) {
+            echo '<option value="' . $i . '">' . $airports[$i]['name'] . '</options>';
+        }
+        ?>
     </select><br>
     <label>Czas startu</label><br>
     <input  type="datetime-local" name="startTime"><br>
