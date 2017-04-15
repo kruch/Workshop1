@@ -1,0 +1,8 @@
+{
+    "require": {
+        "kwn/number-to-words": "^1.2",
+        "fzaninotto/faker": "^1.6",
+        "mpdf/mpdf": "^6.1"
+    }
+    
+}
