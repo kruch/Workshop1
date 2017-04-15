@@ -1,4 +1,6 @@
 <?php
+require_once './vendor/autoload.php';
+require_once './vendor/fzaninotto/faker/src/autoload.php';
 include './includes/airports.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ticketArr = [];
@@ -36,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date_Arr->setTimezone($timezone_arrival);
     var_dump($ticketArr);
     var_dump($date_Arr);
+     $faker=Faker\Factory::create();
+
 }
 ?>
 <!doctype html>
@@ -48,6 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <title>PDF</title>
     </head>
     <body>
+        <table>
+            <td>Imię i nazwisko:</td>><td>
+                <?php
+                echo $faker->name;
+                ?>
+            </td>
+        </table>
         <table>
             <tr>
                 <th>Lotnisko wylotu</th>

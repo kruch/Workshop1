@@ -15,7 +15,7 @@
         <?php
         for ($i = 0; $i < count($airports); $i++) {
             echo '<option value="' . $i . '">' . $airports[$i]['name'] . '</options>';
-        }
+        }   
         ?>
     </select><br>
     <label>Czas startu</label><br>
