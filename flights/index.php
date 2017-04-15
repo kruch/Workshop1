@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +9,9 @@
     <title>Flights reservations</title>
 </head>
 <body>
+<?php
+include './includes/visits.php';
 
+?>
 </body>
 </html>
