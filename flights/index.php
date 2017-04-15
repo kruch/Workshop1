@@ -1,4 +1,9 @@
+<?php
+include './includes/visits.php';
+include './includes/airports.php';
+include './includes/form.php';
 
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,9 +14,8 @@
     <title>Flights reservations</title>
 </head>
 <body>
-<?php
-include './includes/visits.php';
 
-?>
+
+</form>
 </body>
 </html>
