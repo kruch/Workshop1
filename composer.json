@@ -1,0 +1,6 @@
+{
+    "require": {
+        "skurrier/pdflib": "^1.0",
+        "setasign/fpdf": "^1.8"
+    }
+}

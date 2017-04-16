@@ -2,7 +2,7 @@
 require_once './vendor/autoload.php';
 require_once './vendor/fzaninotto/faker/src/autoload.php';
 require_once './vendor/kwn/number-to-words/src/NumberToWords.php';
-
+ob_start();
 
 use NumberToWords\NumberToWords;
 
@@ -41,16 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date_Dep->format('DD.MM.RRRR GG:MM:SS');
     $date_Arr = $date_Dep->modify('+' . $ticketArr['lenght'] . ' hours');
     $date_Arr->setTimezone($timezone_arrival);
-    var_dump($ticketArr);
-    var_dump($date_Arr);
+   // var_dump($ticketArr);
+    //var_dump($date_Arr);
     $faker = Faker\Factory::create();
     $numberToWords = new NumberToWords();
     $currencyTransformer = $numberToWords->getCurrencyTransformer('pl');
    // echo $currencyTransformer->toWords($ticketArr['price'], 'PLN');
-  
-    $mpdf = new mPDF();
-    $mpdf->WriteHTML('asdasd');
-    $mpdf->Output();
+  $fake=$faker->name;
+   
 }
 ?>
 <!doctype html>
@@ -69,14 +67,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </head>
     <body>
         <table>
-            <td>Imię i nazwisko:</td>><td>
+            <td>Imię i nazwisko: 
                 <?php
-                echo $faker->name;
+                echo $fake;
                 ?>
             </td>
-        </table>
-        <table>
+       
             <tr>
+                <th>Imię i nazwisko</th><br>
+            
                 <th>Lotnisko wylotu</th>
                 <th>Kod lotniska odlotu</th>
                 <th>Lotnisko przylotu</th>
@@ -85,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Cena lotu</th>
             </tr>
             <tr>
+                <td><?php echo $fake?></td>
                 <td><?php echo $ticketArr['departure'] . "<br> " . $ticketArr['flight-time'] ?></td>
                 <td><?php echo $ticketArr['codeDep'] ?></td>
                 <td><?php echo $ticketArr['arrival'] ?></td>
@@ -93,9 +93,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><?php echo $ticketArr['price']."<br>". $currencyTransformer->toWords($ticketArr['price'], 'PLN'); ?></td>
             </tr>
         </table>
-    </form>
+    
 </body>
 </html>
 <?php
 
-?>
+$mpdf = new mPDF();
+$output = file_get_contents('pdf.php');
+$output=ob_get_flush();
+$mpdf->WriteHTML($output);
+    $mpdf->Output();
+
+    ?>
