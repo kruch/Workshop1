@@ -1,6 +1,11 @@
 <?php
 require_once './vendor/autoload.php';
 require_once './vendor/fzaninotto/faker/src/autoload.php';
+require_once './vendor/kwn/number-to-words/src/NumberToWords.php';
+
+
+use NumberToWords\NumberToWords;
+
 include './includes/airports.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ticketArr = [];
@@ -38,8 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date_Arr->setTimezone($timezone_arrival);
     var_dump($ticketArr);
     var_dump($date_Arr);
-     $faker=Faker\Factory::create();
-
+    $faker = Faker\Factory::create();
+    $numberToWords = new NumberToWords();
+    $currencyTransformer = $numberToWords->getCurrencyTransformer('pl');
+   // echo $currencyTransformer->toWords($ticketArr['price'], 'PLN');
+  
+    $mpdf = new mPDF();
+    $mpdf->WriteHTML('asdasd');
+    $mpdf->Output();
 }
 ?>
 <!doctype html>
@@ -50,6 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>PDF</title>
+        <style>
+            table, th, td {
+    border: 1px solid black;
+}
+            </style>
     </head>
     <body>
         <table>
@@ -74,9 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><?php echo $ticketArr['arrival'] ?></td>
                 <td><?php echo $ticketArr['codeArr'] ?></td>
                 <td><?php echo $ticketArr['lenght'] ?></td>
-                <td><?php echo $ticketArr['price'] ?></td>
+                <td><?php echo $ticketArr['price']."<br>". $currencyTransformer->toWords($ticketArr['price'], 'PLN'); ?></td>
             </tr>
         </table>
     </form>
 </body>
 </html>
+<?php
+
+?>

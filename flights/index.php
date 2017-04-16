@@ -2,7 +2,10 @@
 include './includes/visits.php';
 include './includes/airports.php';
 include './includes/form.php';
-include './includes/pdf.php';
+//include 'pdf.php';
+
+
+
 ?>
 <!doctype html>
 <html lang="en">
